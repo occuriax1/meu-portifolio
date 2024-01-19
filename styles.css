@@ -1,0 +1,601 @@
+/* Fonte Japonesa do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: url('imagens/fuji_sakura2.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Responsividade do background */
+@media (max-width: 768px) {
+    body {
+        background-size: auto 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        background-size: contain;
+        background-position: top center;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.hamburger-menu {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    cursor: pointer;
+    margin-left: 1500px; 
+}
+
+.navigation {
+    display: none; 
+    position: absolute; 
+    right: 0; 
+    top: 70px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    width: 200px; 
+    border-radius: 5px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    text-align: left;
+    padding: 10px 0; 
+}
+
+.navigation.active {
+    display: block; 
+}
+
+/* Estilizando os links dentro do menu de navegação */
+.navigation a {
+    display: block; 
+    padding: 10px 20px; 
+    color: #fff; 
+    text-decoration: none; 
+    transition: background-color 0.3s; 
+}
+
+.navigation a:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+/* Animação de entrada do texto de boas-vindas */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.welcome-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 20px;
+}
+
+.welcome-container {
+    text-align: center;
+}
+
+.welcome-text {
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    color: #FFC0CB; 
+    font-size: 2em; 
+    margin-bottom: 20px; 
+}
+
+.welcome-image {
+    width: auto; 
+    max-width: 40%; 
+    height: auto; 
+    animation: slideInFromBottom 1s ease-out;
+}
+
+/* Estilo para a seção de cada ilha */
+.island {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.0);
+    padding: 36px;
+    margin: 20px auto;
+    border-radius: 10px;
+    width: 65%;
+}
+
+/* Estilo para o link da ilha */
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+.island-link {
+    position: relative;
+    overflow: hidden;
+    color: rgba(235, 225, 217, 0.8); 
+    text-decoration: none;
+    font-size: 1.5em;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 100%);
+    padding: 10px 20px;
+    border-radius: 15px;
+    transition: color 0.3s, background-color 0.3s;
+    z-index: 1;
+    --flicker-opacity: 1;
+    animation: flicker 2s infinite alternate; 
+    
+}
+
+.island-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, rgba(250, 232, 118, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.island-link:hover {
+    animation: none;
+    background: rgba(231, 220, 156, 0.4);
+}
+
+.island-link:hover::after {
+    
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Estilo para o resumo da ilha */
+.island-summary {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 40px;
+}
+
+/* Estilo para o texto dentro do resumo da ilha */
+.island-text {
+    flex-grow: 1; 
+    margin-right: 20px; 
+}
+
+/* Estilo para a imagem da ilha */
+.island-image {
+    width: 340px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Estilo geral dos Pop-ups */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.popup-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto; 
+    max-width: 80%; 
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000; 
+    color: #333; 
+    overflow-y: auto; 
+    max-height: 80vh; 
+    animation: fadeIn 0.3s ease-out forwards;
+}
+.popup-closing {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Responsividade para o conteúdo do pop-up */
+@media (max-width: 600px) {
+    .popup-content {
+        width: 90%;
+        padding: 10px;
+        max-height: 75vh;
+    }
+}
+
+/* Títulos dentro do pop-up */
+.popup-content h2 {
+    color: #333; 
+    font-size: 1.5em; 
+    margin-bottom: 15px;
+}
+
+/* Parágrafos e listas dentro do pop-up */
+.popup-content p,
+.popup-content ul,
+.popup-content .projeto {
+    color: #333; 
+    line-height: 1.6; 
+    text-align: justify; 
+    white-space: pre-line;
+}
+
+/* Estilo para links e botões */
+.popup-content a,
+.close-popup {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.popup-content a:hover,
+.close-popup:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Itens de lista dentro do pop-up */
+.popup-content ul {
+    padding-left: 20px; 
+}
+
+.popup-active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+/* Botão de fechar ajustado para o estilo do pop-up */
+.close-popup {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f76a8c; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Estilo do overlay para quando o pop-up estiver ativo */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999; 
+}
+
+
+.projeto {
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.6); 
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.projeto h3 {
+    font-size: 1.2em;
+    color: #FFC0CB; 
+}
+
+.footer {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: relative; 
+    width: 100%;
+    z-index: 10;
+}
+
+/* Ajustes nas pétalas */
+.petal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.petal {
+    position: absolute;
+    background-color: #ff99cc; 
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    animation: fallingPetal linear infinite 10s; 
+}
+
+@keyframes fallingPetal {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+    100% {
+        transform: translateY(200vh) rotate(360deg);
+    }
+}
+
+
+/* Tamanhos de tela médios (tablets, telas menores de laptop) */
+@media (max-width: 1024px) {
+    /* Ajustar tamanho e layout dos elementos principais */
+    .header-content h1 {
+        font-size: 1.5em;
+    }
+
+    /* Redimensionamento das ilhas e conteúdo */
+    .island {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .island-summary {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .welcome-image {
+        max-width: 60%;
+    }
+}
+
+/* Tamanhos de tela pequenos (smartphones) */
+@media (max-width: 768px) {
+    /* Ajustes para navegação e cabeçalho */
+    .header {
+        flex-direction: column;
+    }
+
+    .hamburger-menu {
+        margin-left: 0;
+    }
+
+    .navigation {
+        width: 100%;
+    }
+
+    /* Ajustes para conteúdo de boas-vindas */
+    .welcome-text {
+        font-size: 1.5em;
+    }
+}
+
+/* Tamanhos de tela muito pequenos */
+@media (max-width: 480px) {
+    /* Ajustes adicionais para telas muito pequenas */
+    .welcome-text {
+        font-size: 1.2em;
+    }
+
+    .island-link {
+        font-size: 1.2em;
+    }
+
+    .popup-content {
+        width: 95%;
+    }
+}
+
+/* Estilo específico para o pop-up de projetos */
+.popup-projetos-fullscreen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 70%; /* Largura máxima de 70% */
+    height: 90vh;
+    margin: 0;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: none;
+    z-index: 1000;
+    overflow-y: auto;
+    display: none;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Estilo para iframe dentro do pop-up de projetos */
+.popup-projetos-fullscreen .jogo-container-pong iframe {
+    width: 100%;
+    height: 80vh; 
+    border: none; 
+    margin-bottom: -300px;
+    margin-left: 300px;
+    padding-top: 70px;
+}
+
+.popup-projetos-fullscreen .jogo-container iframe {
+    width: 100%;
+    height: 80vh; 
+    border: none; 
+}
+
+.popup-projetos-fullscreen .close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #f76a8c; 
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.descricao-jogo {
+    color: #333; 
+    margin-bottom: 20px; 
+    padding: 10px; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.descricao-jogo h3 {
+    font-size: 1.4em; 
+    margin-bottom: 10px; 
+}
+
+.descricao-jogo p {
+    font-size: 1em; 
+    line-height: 1.5; 
+    text-align: justify; 
+}
+
+
+#popup-habilidades ul {
+    list-style: none; 
+    padding: 0; 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+}
+
+#popup-habilidades ul li {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+#popup-habilidades i {
+    font-size: 40px; 
+    color: #333; 
+    transition: color 0.3s, transform 0.3s; 
+}
+#popup-habilidades i:hover {
+    color: #f76a8c;
+    transform: translateY(-5px);
+}
+
+.icone {
+    width: 40px; 
+    height: auto;
+    transition: transform 0.3s; 
+}
+
+.icone:hover {
+    transform: translateY(-5px); 
+}
+
+.experiencia-item {
+    margin-bottom: 20px;
+}
+
+.experiencia-item h3 {
+    color: #f76a8c;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.experiencia-item p, .experiencia-item ul {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.experiencia-item ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.informacao-contato {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.informacao-contato p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+}
+
+.informacao-contato a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.informacao-contato a:hover {
+    color: #f76a8c;
+}
