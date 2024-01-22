@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon/devicon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Portfólio de Caio Zanelato Medeiros</title>
 </head>
 <body>
@@ -20,15 +21,13 @@
         <div class="header-content">
             <!-- Seu conteúdo do cabeçalho aqui -->
         </div>
-    
-        <!-- Menu de Navegação -->
-        <nav id="navigation" class="navigation">
-            <a href="#popup-sobre" class="island-link">Quem eu sou</a>
-            <a href="#popup-projetos" class="island-link">Projetos</a>
-            <a href="#popup-habilidades" class="island-link">Habilidades</a>
-            <a href="#popup-experiencia" class="island-link">Experiência</a>
-            <a href="#popup-contato" class="island-link">Contato</a>
-        </nav>
+        <audio id="musicaDeFundo" loop>
+            <source src="musica/misterio.mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+          </audio>
+          <button onclick="togglePlayPause()">
+            <i id="playPauseIcon" class="fa fa-play" aria-hidden="true"></i>
+          </button>
     </header>
 
     <div class="petal-container"></div>
@@ -42,15 +41,39 @@
         <div class="welcome-container-second-phase hidden">
             
             <p class="welcome-text-second">
-                Olá! Novamente você está prestes a conhecer um pouco mais sobre mim , minhas experiências, habilidades e alguns dos projetos que desenvolvi. Cada um deles representa um passo no meu caminho como desenvolvedor, combinando aprendizado e paixão pela tecnologia.
+               Me chamo Caio e você está prestes a conhecer um pouco mais sobre mim ,
+               utilize as lanternas para descobrir minhas experiências, habilidades e alguns dos projetos que desenvolvi.
+                Cada um deles representa um passo no meu caminho como desenvolvedor, combinando aprendizado e paixão pela tecnologia.
             </p>
             <p class="welcome-text-second">
                  Vamos embarcar nessa jornada juntos!
             </p>
             <img src="imagens/eu3.png" alt="Imagem Sobre Mim" class="welcome-image-second ">
         </div>
+
+        
     </div>
-    
+
+
+        <!-- Menu de Navegação -->
+        
+        <nav id="navigation" class="navigation">
+            <a href="#popup-sobre" class="image-menu">
+                <img src="imagens/Lampa1.png" alt="Quem eu sou">
+            </a>
+            <a href="#popup-projetos" class="image-menu">
+                <img src="imagens/Lampa2.png" alt="Projetos">
+            </a>
+            <a href="#popup-habilidades" class="image-menu">
+                <img src="imagens/Lampa3.png" alt="image-menu">
+            </a>
+            <a href="#popup-experiencia" class="image-menu">
+                <img src="imagens/Lampa4.png" alt="Experiência">
+            </a>
+            <a href="#popup-contato" class="image-menu">
+                <img src="imagens/Lampa5.png" alt="contato">
+            </a>
+        </nav>
         <!-- Pop-ups de Conteúdo -->
         <div id="popup-sobre" class="popup-content">
             <h2>Quem eu sou</h2>
@@ -123,8 +146,8 @@
                 <li><i class="devicon-jquery-plain"></i> jQuery</li>
                 <li><i class="devicon-laravel-plain"></i> Laravel</li>
                 <li><i class="devicon-csharp-plain"></i> C#</li>
-                <li><img src="imagens/gmaker.png" alt="GameMaker" class="icone">GML</li>
-                <li><img src="imagens/unity.png" alt="Unity" class="icone"> Unity</li>
+                <li><img src="/imagens/gmaker.png" alt="GameMaker" class="icone">GML</li>
+                <li><img src="/imagens/unity.png" alt="Unity" class="icone"> Unity</li>
             </ul>
             <button class="close-popup" onclick="closePopup('popup-habilidades')">Fechar</button>
         </div>
