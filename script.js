@@ -139,7 +139,7 @@ function initPetalEffect(petalContainer) {
 let paginaAtualProjeto = 1;
 let paginaAtualExperiencia = 1;
 const totalPaginasProjeto = 2; // Atualize conforme adicionar mais páginas
-const totalPaginasExperiencia = 3; // Atualize conforme adicionar mais páginas
+const totalPaginasExperiencia = 4; // Atualize conforme adicionar mais páginas
 
 function mudarPagina(tipo, direcao) {
     let paginaAtual, totalPaginas, prefixoId;
