@@ -64,8 +64,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
     // Função para abrir um pop-up específico
+
+    document.querySelectorAll('.image-menu').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const popupId = this.getAttribute('href').substring(1);
+            openPopup(popupId);
+        });
+    });
+
     function openPopup(popupId) {
-        const popup = document.getElementById(popupId.substring(1));
+        const popup = document.getElementById(popupId);
         if (popup) {
             popup.classList.add('popup-active');
             overlay.style.display = 'block';
@@ -78,13 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.style.display = 'none';
     }
 
-    // Eventos para abrir pop-ups a partir dos links
-    popupLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            openPopup(this.getAttribute('href'));
-        });
-    });
 
     // Eventos para fechar pop-ups
     closePopupButtons.forEach(button => {
@@ -101,29 +103,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Restaurar animação das pétalas
-    
-    
-        function initPetalEffect(petalContainer) {
-        for (let i = 0; i < 50; i++) {
-            const petal = document.createElement('div');
-            petal.classList.add('petal');
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animation = `fallingPetal ${Math.random() * 5 + 3}s linear infinite`;
-            petal.style.animationDelay = `${-(Math.random() * 5)}s`;
-            petalContainer.appendChild(petal);
-        }
-    }
+
 });
 
-// Funções para abrir e fechar os pop-ups com animações suaves
-function openPopup(popupId) {
-    const popup = document.getElementById(popupId.substring(1));
-    if (popup) {
-        popup.classList.add('popup-active');
-        overlay.style.display = 'block';
-    }
-}
+
 
 function closePopup(popupId) {
     const popup = document.getElementById(popupId.substring(1));
@@ -136,6 +119,23 @@ function closePopup(popupId) {
     }
 }
 
+
+// Restaurar animação das pétalas
+    
+    
+function initPetalEffect(petalContainer) {
+    for (let i = 0; i < 50; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animation = `fallingPetal ${Math.random() * 5 + 6}s linear infinite`;
+        petal.style.animationDelay = `${-(Math.random() * 5)}s`;
+        petalContainer.appendChild(petal);
+        
+    }
+}
+
+// logica de paginas
 let paginaAtualProjeto = 1;
 let paginaAtualExperiencia = 1;
 const totalPaginasProjeto = 2; // Atualize conforme adicionar mais páginas
@@ -191,3 +191,30 @@ function atualizarBotoesNavegacao(tipo) {
     botaoVoltar.classList.toggle('hidden', paginaAtual === 1);
     botaoProximo.classList.toggle('hidden', paginaAtual === totalPaginas);
 }
+//fim logica de paginas
+
+var musicaDeFundo = document.getElementById('musicaDeFundo');
+var playPauseIcon = document.getElementById('playPauseIcon');
+
+// Função para alternar entre play e pause
+function togglePlayPause() {
+    var playButton = document.querySelector('button');
+  if (musicaDeFundo.paused) {
+    musicaDeFundo.play();
+    playPauseIcon.className = 'fa fa-pause';
+    playButton.classList.add('playing')
+  } else {
+    musicaDeFundo.pause();
+    playPauseIcon.className = 'fa fa-play';
+    playButton.classList.remove('playing')
+  }
+}
+
+// Event listener para lidar com a reprodução automática bloqueada
+window.addEventListener('DOMContentLoaded', (event) => {
+  musicaDeFundo.play().catch(error => {
+    console.error("A reprodução automática foi impedida pelo navegador.");
+    // Quando a reprodução automática for impedida, altere o ícone para 'play'
+    playPauseIcon.className = 'fa fa-play';
+  });
+});
