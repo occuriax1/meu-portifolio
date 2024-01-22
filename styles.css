@@ -5,7 +5,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans JP', sans-serif;
-    background: url('imagens/fuji_sakura2.png') no-repeat center center fixed;
+    background: url('imagens/fuji_sakura3.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
     min-height: 100vh;
@@ -22,7 +22,7 @@ body {
 @media (max-width: 480px) {
     body {
 
-        background-position: top center;
+        background: url('imagens/fuji_sakura3_celular.jpg') no-repeat center center fixed;
     }
 }
 
@@ -39,26 +39,6 @@ body {
 .header-content h1 {
     margin: 0;
     font-size: 2em; /* Aumentado para melhor visibilidade */
-}
-/* Navegação e Links */
-.navigation {
-    display: flex;
-    justify-content: space-around; /* Distribuição equilibrada dos links */
-    width: 100%;
-}
-
-
-/* Estilizando os links dentro do menu de navegação */
-.navigation a {
-    display: block; 
-    padding: 10px 20px; 
-    color: #fff; 
-    text-decoration: none; 
-    transition: background-color 0.3s; 
-}
-
-.navigation a:hover {
-    background-color: rgba(255, 255, 255, 0.2); 
 }
 
 /* Estilos para o ícone do menu hambúrguer */
@@ -86,12 +66,11 @@ body {
 /* Responsividade: Estilos para telas menores */
 @media (max-width: 768px) {
     .hamburger-icon {
-        display: flex; /* Mostra o ícone do hambúrguer */
+        display: none; /* Mostra o ícone do hambúrguer */
     }
 
     .navigation {
-        display: none; /* Esconde a navegação */
-        flex-direction: column;
+        display: block;   
         align-items: center;
         background: rgba(27, 10, 27, 0.164);
         position: absolute;
@@ -100,9 +79,6 @@ body {
         padding: 30px 0;
     }
 
-    .navigation.active {
-        display: flex; /* Mostra a navegação quando ativa */
-    }
 
     .navigation a {
         padding: 10px;
@@ -110,6 +86,8 @@ body {
         text-decoration: none;
         font-size: 1.2em;
     }
+
+    
 }
 
 /* Animação de entrada do texto de boas-vindas */
@@ -177,7 +155,7 @@ body {
 
 .welcome-text {
     animation: 1s ease-out 0s 1 slideInFromLeft;
-    color: #FFC0CB; 
+    color: #f34e57; 
     font-size: 2em; 
     margin-bottom: 20px; 
 }
@@ -199,8 +177,8 @@ body {
 }
 
 .welcome-text-second {
-    color: #FFC0CB;
-    font-size: 40px; /* Tamanho do texto */
+    color:  #f34e57; 
+    font-size: 32px; /* Tamanho do texto */
     margin: 10px 0;
     animation: slideInFromLeft 1s ease-out;
 }
@@ -250,47 +228,97 @@ body {
 
 /* Estilo para o link da ilha */
 
-@keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-}
-.island-link {
-    position: relative;
-    overflow: hidden;
-    color: rgba(235, 225, 217, 0.8); 
-    text-decoration: none;
-    font-size: 1.5em;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 100%);
-    padding: 10px 20px;
-    border-radius: 15px;
-    transition: color 0.3s, background-color 0.3s;
-    z-index: 1;
-    --flicker-opacity: 1;
-    animation: flicker 2s infinite alternate; 
-    
+@keyframes sway {
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
 }
 
-.island-link::after {
-    content: '';
+/* Estilo base para os itens do menu */
+.image-menu {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle at center, rgba(250, 232, 118, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
-    border-radius: 50%;
-    z-index: -1;
-}
-
-.island-link:hover {
-    animation: none;
-    background: rgba(231, 220, 156, 0.4);
-}
-
-.island-link:hover::after {
+    cursor: pointer;
+    display: inline-block;
+    animation: sway 6s ease-in-out infinite; /* Ajuste a duração conforme desejado */
+    transform-origin: top center; /* Ponto de origem da rotação */
     
-    transform: translate(-50%, -50%) scale(1);
+}
+
+.image-menu:hover  {
+    transform: rotate(5deg);
+}
+
+
+/* Posicionando individualmente cada item do menu */
+#navigation a:nth-child(1) {
+    top: 31vh;
+    left: 27vw;
+    width: 60px;
+}
+
+#navigation a:nth-child(2) {
+    top: 3vh;
+    left: 33vw;
+    width: 82px;
+}
+#navigation a:nth-child(3) {
+    top: 24vh;
+    left: 50vw;
+    width: 82px;
+}
+#navigation a:nth-child(4) {
+    top: 29vh;
+    left: 62vw;
+    width: 82px;
+}
+#navigation a:nth-child(5) {
+    top: 42vh;
+    left: 71vw;
+    width: 68px;
+}
+
+@media (max-width: 480px){
+
+    #navigation a:nth-child(1) {
+        top: 34vh;
+        left: 19vw;
+        width: 38px;
+    }
+
+    #navigation a:nth-child(2) {
+        top: 18vh;
+        left: 27vw;
+        width: 36px;
+    }
+
+    #navigation a:nth-child(3) {
+        top: 32vh;
+        left: 45vw;
+        width: 35px;
+    }
+
+    #navigation a:nth-child(4) {
+        top: 39vh;
+        left: 57vw;
+        width: 35px;
+    }
+
+    #navigation a:nth-child(5) {
+        top: 45vh;
+        left: 73vw;
+        width: 39px;
+    }
+
+
+}
+
+
+.image-menu img {
+    width: 100%;
+    height: auto;
 }
 
 
@@ -551,7 +579,7 @@ body {
 
 .petal {
     position: absolute;
-    background-color: #ff99cc; 
+    background-color: #f34e57; 
     border-radius: 50%;
     width: 10px;
     height: 10px;
@@ -818,14 +846,29 @@ body {
 
 @media (max-width: 768px) {
     .jogo-container {
-        display: none; /* Oculta os jogos em dispositivos móveis */
+        display: none; 
     }
 
     .mensagem-dispositivo-movel {
-        display: block; /* Exibe a mensagem para dispositivos móveis */
+        display: block; 
     }
     .mensagem-dispositivo-movel.hidden {
-        display: block; /* Exibe a mensagem mesmo se tiver a classe .hidden */
-        animation: none; /* Remove a animação de desaparecimento */
+        display: block; 
+        animation: none; 
     }
 }
+
+button {
+    background-color: #4CAF50;
+    border: none; 
+    padding: 10px 20px; 
+    color: white; 
+    cursor: pointer; 
+    border-radius: 5px; 
+  }
+  
+  /* Estilizar apenas o botão que está tocando */
+  button.playing {
+    background-color: #f34e57; 
+    
+  }
