@@ -102,22 +102,24 @@ document.addEventListener("DOMContentLoaded", function () {
             closePopups();
         }
     });
+    // Função global para fechar pop-ups individualmente
+    window.closePopup = function(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+            popup.classList.add("popup-closing");
+            setTimeout(() => {
+                popup.classList.remove("popup-active", "popup-closing");
+                overlay.style.display = "none";
+            }, 300);
+        }
+    };
+
 
 
 });
 
 
 
-function closePopup(popupId) {
-    const popup = document.getElementById(popupId.substring(1));
-    if (popup) {
-        popup.classList.add('popup-closing');
-        setTimeout(() => {
-            popup.classList.remove('popup-active', 'popup-closing');
-            overlay.style.display = 'none';
-        }, 300);
-    }
-}
 
 
 // Restaurar animação das pétalas
