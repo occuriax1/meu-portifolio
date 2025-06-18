@@ -5,26 +5,36 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Noto Sans JP', sans-serif;
-    background: url('imagens/fuji_sakura3.jpg') no-repeat center center fixed;
-    background-size: cover;
     color: #fff;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
+.fuji-parallax {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -2;
+}
+
+.fuji-parallax::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('imagens/fuji_sakura3.jpg') no-repeat center center / cover;
+    animation: fujiKenBurns 30s ease-in-out alternate infinite;
+    transform: translate(var(--mx,0), var(--my,0));
+    will-change: transform;
+}
+
+@keyframes fujiKenBurns {
+    from {transform: scale(1) translateY(0);}
+    to {transform: scale(1.05) translateY(-2%);}
+}
+
 /* Responsividade do background */
-@media (max-width: 768px) {
-    body {
-        background-size: auto 100%;
-    }
-}
 
-@media (max-width: 480px) {
-    body {
-
-        background: url('imagens/fuji_sakura3_celular.jpg') no-repeat center center fixed;
-    }
-}
 
 /* Cabeçalho e Navegação */
 .header {
@@ -210,6 +220,27 @@ body {
     height: auto;
 }
 
+.image-menu .tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, -4px);
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.image-menu:focus .tooltip,
+.image-menu:hover .tooltip {
+    opacity: 1;
+}
+
 .image-menu .menu-label {
     display: none;
     font-size: 14px;
@@ -238,37 +269,35 @@ body {
     to { opacity: 0; }
 }
 
-.popup-content {
+.modal {
     display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    max-width: 80%; 
-    height: auto;
-    margin: auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000; 
-    color: #333; 
-    overflow-y: auto; 
-    max-height: 80vh; 
-    animation: fadeIn 0.3s ease-out forwards;
-    text-align: center;
-}
-.popup-closing {
-    animation: fadeOut 0.3s ease-out forwards;
-}
-.popup-active.popup-projetos {
-    max-height: 600px; /* Altura máxima */
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Classe para o pop-up de experiência */
-.popup-active.popup-experiencia {
-    max-height: 600px; 
+.modal.active {
+    display: flex;
+}
+
+.modal-card {
+    max-width: 720px;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.4);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+.modal-closing {
+    animation: fadeOut 0.3s ease-out forwards;
 }
 
 /* Responsividade (ajustar conforme necessário) */
@@ -349,24 +378,19 @@ body {
     }
 }
 
-.popup-active {
-    display: block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    max-width: 70%;
-    margin: auto;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    color: white;
-    overflow-y: auto;
-    max-height: 80vh;
+.modal.active .modal-card {
     animation: movimentoLateral 0.5s ease-out forwards;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 .popup-nav-buttons {
@@ -405,17 +429,6 @@ body {
     font-size: 1em;
 }
 
-/* Estilo do overlay para quando o pop-up estiver ativo */
-.popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 999; 
-}
 
 
 .projeto {
@@ -794,10 +807,11 @@ button {
 #samurai-guide .samurai-bubble {
     background: rgba(0,0,0,0.7);
     color: #fff;
-    padding: 8px 12px;
+    padding: 0 .75rem;
     border-radius: 8px;
     margin-top: 5px;
-    font-size: 14px;
+    font-size: .85rem;
+    max-width: 260px;
 }
 
 #samurai-guide .samurai-close {
