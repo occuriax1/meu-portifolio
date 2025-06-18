@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const hamburgerIcon = document.querySelector('.hamburger-icon');
     const navigation = document.querySelector('.navigation');
-    const popups = document.querySelectorAll('.popup-content');
-    const overlay = document.getElementById('popup-overlay');
+    const popups = document.querySelectorAll('.modal');
     const closePopupButtons = document.querySelectorAll('.close-popup');
     const popupLinks = document.querySelectorAll('.island-link');
     const petalContainer = document.querySelector('.petal-container');
     initPetalEffect(petalContainer);
     initSamuraiGuide();
+    initFujiParallax();
     document.addEventListener("DOMContentLoaded", atualizarBotoesNavegacao);
    
     
@@ -50,19 +50,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function showModal(popupId) {
-        const popup = document.getElementById(popupId);
-        if (popup) {
-            popup.classList.add('popup-active');
-            overlay.style.display = 'block';
-            popup.setAttribute('tabindex', '-1');
-            popup.focus();
+        const modal = document.getElementById(popupId);
+        if (modal) {
+            modal.classList.add('active');
+            modal.setAttribute('tabindex', '-1');
+            trapFocus(modal);
+            modal.focus();
         }
     }
 
-    // Função para fechar todos os pop-ups e o overlay
+    // Função para fechar o modal ativo
     function closeModal() {
-        popups.forEach(popup => popup.classList.remove('popup-active'));
-        overlay.style.display = 'none';
+        const active = document.querySelector('.modal.active');
+        if (active) {
+            active.classList.remove('active');
+            releaseFocus(active);
+        }
     }
 
 
@@ -71,8 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener('click', closeModal);
     });
 
-    // Fechar pop-ups ao clicar no overlay
-    overlay.addEventListener('click', closeModal);
+
 
     // Fechar pop-ups ao pressionar a tecla Escape
     window.addEventListener('keydown', e => {
@@ -82,12 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     // Função global para fechar pop-ups individualmente
     window.closePopup = function(popupId) {
-        const popup = document.getElementById(popupId);
-        if (popup) {
-            popup.classList.add("popup-closing");
+        const modal = document.getElementById(popupId);
+        if (modal) {
+            modal.classList.add("modal-closing");
             setTimeout(() => {
-                popup.classList.remove("popup-active", "popup-closing");
-                overlay.style.display = "none";
+                modal.classList.remove("active", "modal-closing");
             }, 300);
         }
     };
@@ -185,10 +186,60 @@ function initSamuraiGuide() {
         <button class="samurai-close" aria-label="Fechar">&times;</button>
     `;
     document.body.appendChild(guide);
-    guide.querySelector('.samurai-close').addEventListener('click', () => {
+
+    const closeGuide = () => {
         guide.remove();
         sessionStorage.setItem('samuraiShown', 'true');
-    });
+        document.removeEventListener('keydown', escHandler);
+    };
+
+    const escHandler = (e) => {
+        if (e.key === 'Escape') closeGuide();
+    };
+
+    guide.querySelector('.samurai-close').addEventListener('click', closeGuide);
+    document.addEventListener('keydown', escHandler);
+}
+
+function trapFocus(modal) {
+    const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex="0"]');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    modal.addEventListener('keydown', trap);
+    function trap(e) {
+        if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        } else if (e.key === 'Escape') {
+            closeModal();
+        }
+    }
+    modal._trap = trap;
+}
+
+function releaseFocus(modal) {
+    if (modal._trap) {
+        modal.removeEventListener('keydown', modal._trap);
+        delete modal._trap;
+    }
+}
+
+function initFujiParallax() {
+    const bg = document.querySelector('.fuji-parallax');
+    if (!bg) return;
+    if (window.matchMedia('(pointer:fine)').matches) {
+        document.addEventListener('mousemove', e => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
+            bg.style.setProperty('--mx', `${x}px`);
+            bg.style.setProperty('--my', `${y}px`);
+        });
+    }
 }
 
 var musicaDeFundo = document.getElementById('musicaDeFundo');

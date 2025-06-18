@@ -10,6 +10,7 @@
     <title>Portfólio de Caio Zanelato Medeiros</title>
 </head>
 <body>
+    <div class="fuji-parallax"></div>
     <header class="header">
         <!-- Ícone do Menu Hambúrguer -->
         <div id="hamburger-icon" class="hamburger-icon hidden">
@@ -37,30 +38,37 @@
         <!-- Menu de Navegação -->
         
         <nav id="navigation" class="navigation">
-            <a href="#popup-sobre" class="image-menu" role="button" tabindex="0" title="Quem Sou">
-                <img src="imagens/Lampa1.png" alt="Quem eu sou">
-                <span class="menu-label">Quem Sou</span>
+            <a href="#popup-sobre" class="image-menu" role="button" tabindex="0">
+                <img src="imagens/Lampa1.png" alt="Sobre">
+                <span class="menu-label">Sobre</span>
+                <span class="tooltip" role="tooltip">Sobre</span>
             </a>
-            <a href="#popup-projetos" class="image-menu" role="button" tabindex="0" title="Projetos">
+            <a href="#popup-projetos" class="image-menu" role="button" tabindex="0">
                 <img src="imagens/Lampa2.png" alt="Projetos">
                 <span class="menu-label">Projetos</span>
+                <span class="tooltip" role="tooltip">Projetos</span>
             </a>
-            <a href="#popup-habilidades" class="image-menu" role="button" tabindex="0" title="Habilidades">
+            <a href="#popup-habilidades" class="image-menu" role="button" tabindex="0">
                 <img src="imagens/Lampa3.png" alt="Habilidades">
                 <span class="menu-label">Habilidades</span>
+                <span class="tooltip" role="tooltip">Habilidades</span>
             </a>
-            <a href="#popup-experiencia" class="image-menu" role="button" tabindex="0" title="Experiência">
+            <a href="#popup-experiencia" class="image-menu" role="button" tabindex="0">
                 <img src="imagens/Lampa4.png" alt="Experiência">
                 <span class="menu-label">Experiência</span>
+                <span class="tooltip" role="tooltip">Experiência</span>
             </a>
-            <a href="#popup-contato" class="image-menu" role="button" tabindex="0" title="Contato">
-                <img src="imagens/Lampa5.png" alt="contato">
+            <a href="#popup-contato" class="image-menu" role="button" tabindex="0">
+                <img src="imagens/Lampa5.png" alt="Contato">
                 <span class="menu-label">Contato</span>
+                <span class="tooltip" role="tooltip">Contato</span>
             </a>
         </nav>
         <!-- Pop-ups de Conteúdo -->
-        <div id="popup-sobre" class="popup-content">
-            <h2>Quem eu sou</h2>
+        <div id="popup-sobre" class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-sobre">
+            <div class="modal-card">
+                <button class="modal-close" aria-label="Fechar" onclick="closeModal()">&times;</button>
+                <h2 id="titulo-sobre">Quem eu sou</h2>
             <p>Olá, meu nome é Caio Zanelato Medeiros e tenho 30 anos. Atuo como Desenvolvedor Full Stack, encontrando-me atualmente entre os níveis Júnior e Pleno. Minha jornada no mundo da tecnologia começou há cerca de 8 anos, inicialmente focada em atendimento ao cliente, o que me proporcionou uma base sólida em comunicação e compreensão das necessidades dos usuários.
     
                 Sou graduado em Análise e Desenvolvimento de Sistemas, uma formação que solidificou minha paixão e habilidades tanto no desenvolvimento web quanto no desenvolvimento de jogos. Ao longo dos anos, adquiri uma gama diversificada de competências técnicas, que me permitem abordar projetos com uma perspectiva holística e soluções inovadoras.
@@ -68,11 +76,14 @@
                 Estou sempre em busca de novas responsabilidades e oportunidades. As empresas para as quais desejo contribuir são aquelas onde posso ampliar meus conhecimentos e aplicar minha experiência para gerar impacto positivo. Trabalho bem em equipe, destacando-me pela facilidade em aprender e me adaptar rapidamente a novos desafios. Minha dedicação é total, sempre com o objetivo de contribuir para o sucesso e o bem-estar da organização.
                 
                 Organização, criatividade, comunicação eficaz e proficiência são algumas das características que me definem como profissional. Estou animado para explorar oportunidades onde possa continuar crescendo, inovando e fazendo a diferença.</p>
-            <button class="close-popup" onclick="closeModal()">Fechar</button>
+                <button class="close-popup" onclick="closeModal()">Fechar</button>
+            </div>
         </div>
-        <div id="popup-projetos" class="popup-content popup-projetos">
-            <div class="pagina" id="projeto-pagina-1">
-                <h2>Meus Projetos</h2>
+        <div id="popup-projetos" class="modal popup-projetos" role="dialog" aria-modal="true" aria-labelledby="titulo-projetos">
+            <div class="modal-card">
+                <button class="modal-close" aria-label="Fechar" onclick="closeModal()">&times;</button>
+                <div class="pagina" id="projeto-pagina-1">
+                    <h2 id="titulo-projetos">Meus Projetos</h2>
                     <p>Detalhes dos projetos realizados...</p>
                 <div class="descricao-jogo">
                     <h3>PONG: Duelo de Reflexos e Agilidade</h3>
@@ -113,9 +124,12 @@
                 <button id="botao-proximo-projeto" onclick="mudarPagina('projeto', 1)">Próximo</button>
                 <button class="close-popup" onclick="closeModal()">Fechar</button>
             </div>
+            </div>
         </div>
-        <div id="popup-habilidades" class="popup-content">
-            <h2>Habilidades</h2>
+        <div id="popup-habilidades" class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-habilidades">
+            <div class="modal-card">
+                <button class="modal-close" aria-label="Fechar" onclick="closeModal()">&times;</button>
+                <h2 id="titulo-habilidades">Habilidades</h2>
             <p>Minha trajetória como desenvolvedor é marcada pela constante busca por aprimoramento e pela versatilidade em diversas tecnologias. Iniciei com as bases sólidas do HTML5 e CSS3, fundamentais para a construção de interfaces web elegantes e responsivas. Rapidamente, avancei para linguagens de script como JavaScript e PHP, enriquecendo meu repertório com capacidades de interatividade dinâmica e lógica de servidor robusta.</p>
             <p >Na busca por soluções de banco de dados eficientes, me aprofundei em SQL, essencial para gerenciar e organizar dados complexos. Com o avanço das aplicações móveis, abracei o desafio do desenvolvimento multiplataforma com React Native, enquanto o Node.js se tornou meu aliado para construir aplicações do lado do servidor escaláveis e eficientes.</p>
             <p>Além disso, minha experiência com jQuery me permitiu manipular o DOM de maneira eficaz, e o Laravel ofereceu um framework robusto para aplicações PHP. Não menos importante, aprofundei-me em C#, expandindo meu alcance para aplicações desktop e jogos. Cada tecnologia que domino representa um passo importante na minha jornada como desenvolvedor, refletindo meu compromisso com a aprendizagem contínua e a excelência técnica.</p>
@@ -133,11 +147,14 @@
                 <li><img src="imagens/gmaker.png" alt="GameMaker" class="icone">GML</li>
                 <li><img src="imagens/unity.png" alt="Unity" class="icone"> Unity</li>
             </ul>
-            <button class="close-popup" onclick="closeModal()">Fechar</button>
+                <button class="close-popup" onclick="closeModal()">Fechar</button>
+            </div>
         </div>
-        <div id="popup-experiencia" class="popup-content popup-experiencia">
-            <div class="pagina" id="experiencia-pagina-1">    
-                <h2>Experiência Profissional</h2>
+        <div id="popup-experiencia" class="modal popup-experiencia" role="dialog" aria-modal="true" aria-labelledby="titulo-experiencia">
+            <div class="modal-card">
+                <button class="modal-close" aria-label="Fechar" onclick="closeModal()">&times;</button>
+                <div class="pagina" id="experiencia-pagina-1">
+                    <h2 id="titulo-experiencia">Experiência Profissional</h2>
             
                 <div class="experiencia-item">
                     <h3>Desenvolvedor Pleno - Agência Chleba</h3>
@@ -188,10 +205,13 @@
                 <button id="botao-proximo-experiencia" onclick="mudarPagina('experiencia', 1)">Próximo</button>
                 <button class="close-popup" onclick="closeModal()">Fechar</button>
             </div>
+            </div>
         </div>
 
-        <div id="popup-contato" class="popup-content">
-            <h2>Entre em Contato</h2>
+        <div id="popup-contato" class="modal" role="dialog" aria-modal="true" aria-labelledby="titulo-contato">
+            <div class="modal-card">
+                <button class="modal-close" aria-label="Fechar" onclick="closeModal()">&times;</button>
+                <h2 id="titulo-contato">Entre em Contato</h2>
             <p>Estou disponível para oportunidades e adoraria discutir como posso contribuir para o seu projeto ou equipe. Sinta-se à vontade para entrar em contato comigo por qualquer um dos meios abaixo:</p>
             
             <div class="informacao-contato">
@@ -200,13 +220,12 @@
                 <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/caio-zanelato-medeiros-b885871a4" target="_blank">caio-zanelato-medeiros</a></p>
             </div>
         
-            <button class="close-popup" onclick="closeModal()">Fechar</button>
+                <button class="close-popup" onclick="closeModal()">Fechar</button>
+            </div>
         </div>
     <footer class="footer">
         <p>&copy; 2024 Caio Zanelato Medeiros. Todos os direitos reservados.</p>
     </footer>
-
-    <div id="popup-overlay" class="popup-overlay"></div>
 
     <script src="js/main.js"></script>
 </body>

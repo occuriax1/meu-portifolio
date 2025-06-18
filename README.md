@@ -5,11 +5,13 @@ Este repositório abriga o código do meu portfólio pessoal.
 ## Como rodar localmente
 
 1. Clone este repositório.
-2. A partir da pasta do projeto, execute um servidor HTTP simples:
+2. Na pasta do projeto, rode um servidor estático:
    ```bash
-   python3 -m http.server
+   npx serve .
    ```
-3. Abra `http://localhost:8000` no navegador para ver o site.
+3. Acesse `http://localhost:3000` no navegador.
+
+Todos os assets de imagem já estão disponíveis na pasta `assets/`.
 
 ## Demo
 
