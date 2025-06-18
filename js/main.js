@@ -1,16 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const firstPhase = document.querySelector('.welcome-container');
-    const secondPhase = document.querySelector('.welcome-container-second-phase');
     const hamburgerIcon = document.querySelector('.hamburger-icon');
     const navigation = document.querySelector('.navigation');
-    let clickCount = 0;
     const popups = document.querySelectorAll('.popup-content');
     const overlay = document.getElementById('popup-overlay');
     const closePopupButtons = document.querySelectorAll('.close-popup');
     const popupLinks = document.querySelectorAll('.island-link');
     const petalContainer = document.querySelector('.petal-container');
     initPetalEffect(petalContainer);
+    initSamuraiGuide();
     document.addEventListener("DOMContentLoaded", atualizarBotoesNavegacao);
    
     
@@ -32,30 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
         hamburgerIcon.addEventListener('click', toggleNavigation);
     
 
-    // Evento para alternar entre as fases da tela de boas-vindas
-    welcomeScreen.addEventListener('click', function() {
-        clickCount++;
-        handleWelcomeScreenClick(clickCount);
-    });
 
-    function handleWelcomeScreenClick(count) {
-        if (count === 1) {
-            // Esconde a primeira fase e mostra a segunda
-            firstPhase.classList.add('hidden');
-            secondPhase.classList.remove('hidden');
-        } else if (count === 2) {
-            // Inicia a animação de fade out e depois esconde a tela de boas-vindas
-        secondPhase.style.animation = 'fadeOut 1s ease-out';
-        setTimeout(() => {
-            welcomeScreen.classList.add('hidden');
-            toggleHamburgerIcon(true); 
-        }, 1000); // Aguarda a animação de fade out terminar
-    }
-}
-
-    // Restaurar animação suave da tela de boas-vindas
-    welcomeScreen.querySelector('.welcome-text').style.animation = '1s ease-out 0s 1 slideInFromLeft';
-    welcomeScreen.querySelector('.welcome-image').style.animation = '1s ease-out slideInFromBottom';
+    // Ícone do menu visível ao carregar a página
+    toggleHamburgerIcon(true);
 
     // Fechar a navegação ao clicar em um link
     document.querySelectorAll('.navigation a').forEach(link => {
@@ -69,20 +45,22 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             const popupId = this.getAttribute('href').substring(1);
-            openPopup(popupId);
+            showModal(popupId);
         });
     });
 
-    function openPopup(popupId) {
+    function showModal(popupId) {
         const popup = document.getElementById(popupId);
         if (popup) {
             popup.classList.add('popup-active');
             overlay.style.display = 'block';
+            popup.setAttribute('tabindex', '-1');
+            popup.focus();
         }
     }
 
     // Função para fechar todos os pop-ups e o overlay
-    function closePopups() {
+    function closeModal() {
         popups.forEach(popup => popup.classList.remove('popup-active'));
         overlay.style.display = 'none';
     }
@@ -90,16 +68,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Eventos para fechar pop-ups
     closePopupButtons.forEach(button => {
-        button.addEventListener('click', closePopups);
+        button.addEventListener('click', closeModal);
     });
 
     // Fechar pop-ups ao clicar no overlay
-    overlay.addEventListener('click', closePopups);
+    overlay.addEventListener('click', closeModal);
 
     // Fechar pop-ups ao pressionar a tecla Escape
     window.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
-            closePopups();
+            closeModal();
         }
     });
     // Função global para fechar pop-ups individualmente
@@ -115,6 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
+    window.showModal = showModal;
+    window.closeModal = closeModal;
 
 });
 
@@ -194,6 +174,22 @@ function atualizarBotoesNavegacao(tipo) {
     botaoProximo.classList.toggle('hidden', paginaAtual === totalPaginas);
 }
 //fim logica de paginas
+
+function initSamuraiGuide() {
+    if (sessionStorage.getItem('samuraiShown')) return;
+    const guide = document.createElement('div');
+    guide.id = 'samurai-guide';
+    guide.innerHTML = `
+        <img src="assets/samurai-guide.svg" alt="Guia Samurai">
+        <div class="samurai-bubble">Passe o mouse nas lanternas para navegar</div>
+        <button class="samurai-close" aria-label="Fechar">&times;</button>
+    `;
+    document.body.appendChild(guide);
+    guide.querySelector('.samurai-close').addEventListener('click', () => {
+        guide.remove();
+        sessionStorage.setItem('samuraiShown', 'true');
+    });
+}
 
 var musicaDeFundo = document.getElementById('musicaDeFundo');
 var playPauseIcon = document.getElementById('playPauseIcon');

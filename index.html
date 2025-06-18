@@ -32,46 +32,30 @@
 
     <div class="petal-container"></div>
 
-    <div id="welcome-screen" class="welcome-screen">
-        
-        <div class="welcome-container">
-            <p class="welcome-text">Olá! Bem-vindo ao meu portfólio.<br></p>
-            <img src="imagens/eu2.png" alt="Imagem Sobre Mim" class="welcome-image">
-        </div>
-        <div class="welcome-container-second-phase hidden">
-            
-            <p class="welcome-text-second">
-               Me chamo Caio e você está prestes a conhecer um pouco mais sobre mim ,
-               utilize as lanternas para descobrir minhas experiências, habilidades e alguns dos projetos que desenvolvi.
-                Cada um deles representa um passo no meu caminho como desenvolvedor, combinando aprendizado e paixão pela tecnologia.
-            </p>
-            <p class="welcome-text-second">
-                 Vamos embarcar nessa jornada juntos!
-            </p>
-            <img src="imagens/eu3.png" alt="Imagem Sobre Mim" class="welcome-image-second ">
-        </div>
-
-        
-    </div>
 
 
         <!-- Menu de Navegação -->
         
         <nav id="navigation" class="navigation">
-            <a href="#popup-sobre" class="image-menu">
+            <a href="#popup-sobre" class="image-menu" role="button" tabindex="0" title="Quem Sou">
                 <img src="imagens/Lampa1.png" alt="Quem eu sou">
+                <span class="menu-label">Quem Sou</span>
             </a>
-            <a href="#popup-projetos" class="image-menu">
+            <a href="#popup-projetos" class="image-menu" role="button" tabindex="0" title="Projetos">
                 <img src="imagens/Lampa2.png" alt="Projetos">
+                <span class="menu-label">Projetos</span>
             </a>
-            <a href="#popup-habilidades" class="image-menu">
-                <img src="imagens/Lampa3.png" alt="image-menu">
+            <a href="#popup-habilidades" class="image-menu" role="button" tabindex="0" title="Habilidades">
+                <img src="imagens/Lampa3.png" alt="Habilidades">
+                <span class="menu-label">Habilidades</span>
             </a>
-            <a href="#popup-experiencia" class="image-menu">
+            <a href="#popup-experiencia" class="image-menu" role="button" tabindex="0" title="Experiência">
                 <img src="imagens/Lampa4.png" alt="Experiência">
+                <span class="menu-label">Experiência</span>
             </a>
-            <a href="#popup-contato" class="image-menu">
+            <a href="#popup-contato" class="image-menu" role="button" tabindex="0" title="Contato">
                 <img src="imagens/Lampa5.png" alt="contato">
+                <span class="menu-label">Contato</span>
             </a>
         </nav>
         <!-- Pop-ups de Conteúdo -->
@@ -84,7 +68,7 @@
                 Estou sempre em busca de novas responsabilidades e oportunidades. As empresas para as quais desejo contribuir são aquelas onde posso ampliar meus conhecimentos e aplicar minha experiência para gerar impacto positivo. Trabalho bem em equipe, destacando-me pela facilidade em aprender e me adaptar rapidamente a novos desafios. Minha dedicação é total, sempre com o objetivo de contribuir para o sucesso e o bem-estar da organização.
                 
                 Organização, criatividade, comunicação eficaz e proficiência são algumas das características que me definem como profissional. Estou animado para explorar oportunidades onde possa continuar crescendo, inovando e fazendo a diferença.</p>
-            <button class="close-popup" onclick="closePopup('popup-sobre')">Fechar</button>
+            <button class="close-popup" onclick="closeModal()">Fechar</button>
         </div>
         <div id="popup-projetos" class="popup-content popup-projetos">
             <div class="pagina" id="projeto-pagina-1">
@@ -127,7 +111,7 @@
             <div class="popup-nav-buttons">
                 <button id="botao-voltar-projeto" class="hidden" onclick="mudarPagina('projeto', -1)">Voltar</button>
                 <button id="botao-proximo-projeto" onclick="mudarPagina('projeto', 1)">Próximo</button>
-                <button class="close-popup" onclick="closePopup('popup-projetos')">Fechar</button>
+                <button class="close-popup" onclick="closeModal()">Fechar</button>
             </div>
         </div>
         <div id="popup-habilidades" class="popup-content">
@@ -149,7 +133,7 @@
                 <li><img src="imagens/gmaker.png" alt="GameMaker" class="icone">GML</li>
                 <li><img src="imagens/unity.png" alt="Unity" class="icone"> Unity</li>
             </ul>
-            <button class="close-popup" onclick="closePopup('popup-habilidades')">Fechar</button>
+            <button class="close-popup" onclick="closeModal()">Fechar</button>
         </div>
         <div id="popup-experiencia" class="popup-content popup-experiencia">
             <div class="pagina" id="experiencia-pagina-1">    
@@ -202,7 +186,7 @@
             <div class="popup-nav-buttons">
                 <button id="botao-voltar-experiencia" class="hidden" onclick="mudarPagina('experiencia', -1)">Voltar</button>
                 <button id="botao-proximo-experiencia" onclick="mudarPagina('experiencia', 1)">Próximo</button>
-                <button class="close-popup" onclick="closePopup('popup-experiencia')">Fechar</button>
+                <button class="close-popup" onclick="closeModal()">Fechar</button>
             </div>
         </div>
 
@@ -216,7 +200,7 @@
                 <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/caio-zanelato-medeiros-b885871a4" target="_blank">caio-zanelato-medeiros</a></p>
             </div>
         
-            <button class="close-popup" onclick="closePopup('popup-contato')">Fechar</button>
+            <button class="close-popup" onclick="closeModal()">Fechar</button>
         </div>
     <footer class="footer">
         <p>&copy; 2024 Caio Zanelato Medeiros. Todos os direitos reservados.</p>
@@ -224,6 +208,6 @@
 
     <div id="popup-overlay" class="popup-overlay"></div>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
